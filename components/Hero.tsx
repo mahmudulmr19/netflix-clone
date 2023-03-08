@@ -2,11 +2,11 @@ import Link from "next/link";
 import React from "react";
 import Router from "next/router";
 function Hero() {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+  function handleSubmit(event: React.SyntheticEvent<HTMLFormElement>) {
+    event.preventDefault();
+  }
   return (
-    <div className="bg-[linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url('/images/hero.jpg')] bg-cover w-full h-[90vh] sm:h-[90vh] md:h-screen bg-center relative">
+    <div className="bg-[linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url('/images/hero.jpg')] bg-cover w-full h-[85vh] sm:h-[90vh] md:h-screen bg-center relative">
       <div className="max-w-full px-7 sm:px-9 md:px-11 py-6 mx-auto">
         <div className="container mx-auto">
           {/* header */}
