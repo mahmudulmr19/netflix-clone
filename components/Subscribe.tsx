@@ -21,7 +21,7 @@ function Subscribe() {
           />
           <button
             onClick={() => Router.push("/login")}
-            className=" bg-[#ca0812] w-full md:w-auto hover:bg-[#E50914] px-5 py-3 rounded-sm"
+            className=" bg-[#ca0812] transition w-full md:w-auto hover:bg-[#E50914] px-5 py-3 rounded-sm"
           >
             Get Started
           </button>

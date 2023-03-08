@@ -73,6 +73,9 @@ function Footer() {
       <ul className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
         {linkItem}
       </ul>
+      <p className="text-center mt-10">
+        &copy; Mahmudul Hasan. All Rights Reserved.
+      </p>
     </div>
   );
 }
