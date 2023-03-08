@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "netflix";
+  src: url("./font/normal.woff2");
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "netflix";
+  src: url("./font/bold.woff2");
+  font-display: swap;
+  font-weight: 500;
+  font-style: normal;
+}
+
+body {
+  @apply bg-black h-full overflow-x-hidden;
+  font-family: "netflix", sans-serif !important;
+}
+
+#__next {
+  @apply h-full;
+}
+
+html {
+  @apply h-full text-white;
+  font-family: "netflix", sans-serif !important;
+}
+
+button,
+a {
+  @apply outline-none;
+}
