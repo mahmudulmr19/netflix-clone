@@ -22,7 +22,9 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "scense/Home/HomePage.tsx"
+    "scense/Home/HomePage.tsx",
+    "components/FAQ.tsx",
+    "components/Footer.jsx"
   ],
   "exclude": ["node_modules"]
 }

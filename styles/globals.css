@@ -35,3 +35,12 @@ button,
 a {
   @apply outline-none;
 }
+
+.lineColor {
+  background-color: #222222;
+}
+
+.faqP {
+  @apply bg-[#303030] cursor-pointer flex justify-between items-center;
+  padding: 0.8em 2.2em 0.8em 1.2em;
+}
