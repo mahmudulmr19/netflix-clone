@@ -12,6 +12,8 @@ yarn install
 pnpm install
 ```
 
+### Run The Server
+
 ```bash
 npm run dev
 # or
