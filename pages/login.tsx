@@ -26,7 +26,7 @@ export async function getServerSideProps(context: NextPageContext) {
   };
 }
 
-function login() {
+function Login() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -150,4 +150,4 @@ function login() {
   );
 }
 
-export default login;
+export default Login;
