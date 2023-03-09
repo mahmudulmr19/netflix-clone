@@ -6,6 +6,8 @@ import Link from "next/link";
 import React, { useState, useCallback } from "react";
 import { getSession, signIn } from "next-auth/react";
 import { NextPageContext } from "next";
+import Router from "next/router";
+import { toast } from "react-toastify";
 
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context);
@@ -37,12 +39,18 @@ function login() {
 
   const login = useCallback(async () => {
     try {
-      await signIn("credentials", {
+      const result = await signIn("credentials", {
         email,
         password,
         redirect: false,
         callbackUrl: "/profiles",
       });
+
+      if (result?.error) {
+        toast.error(result.error);
+      } else {
+        Router.push("/home");
+      }
     } catch (error) {
       console.log(error);
     }
