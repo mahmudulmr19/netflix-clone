@@ -4,10 +4,27 @@ import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
 import React, { useState, useCallback } from "react";
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/router";
+import { getSession, signIn } from "next-auth/react";
+import { NextPageContext } from "next";
+
+export async function getServerSideProps(context: NextPageContext) {
+  const session = await getSession(context);
+
+  if (session) {
+    return {
+      redirect: {
+        destination: "/home",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+}
+
 function login() {
-  const router = useRouter();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -24,14 +41,12 @@ function login() {
         email,
         password,
         redirect: false,
-        callbackUrl: "/",
+        callbackUrl: "/profiles",
       });
-
-      router.push("/home");
     } catch (error) {
       console.log(error);
     }
-  }, [email, password, router]);
+  }, [email, password]);
 
   const register = useCallback(
     async (e: any) => {

@@ -1,10 +1,18 @@
+import React, { useState, useCallback } from "react";
 import Link from "next/link";
-import React from "react";
 import Router from "next/router";
-function Hero() {
+import useCurrentUser from "@/hooks/useCurrentUser";
+import AccountMenu from "./AccountMenu";
+const Hero = () => {
   function handleSubmit(event: React.SyntheticEvent<HTMLFormElement>) {
     event.preventDefault();
   }
+  const { data: user } = useCurrentUser();
+  const [showAccountMenu, setShowAccountMenu] = useState(false);
+
+  const toggleAccountMenu = useCallback(() => {
+    setShowAccountMenu((show) => !show);
+  }, []);
   return (
     <div className="bg-[linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url('/images/hero.jpg')] bg-cover w-full h-[85vh] sm:h-[90vh] md:h-screen bg-center relative">
       <div className="max-w-full px-7 sm:px-9 md:px-11 py-6 mx-auto">
@@ -19,12 +27,30 @@ function Hero() {
               />
             </Link>
             <div>
-              <Link
-                href="/login"
-                className="bg-[#E50914]  text-white px-4 py-1.5 rounded text-base "
-              >
-                Sign In
-              </Link>
+              {!user && (
+                <Link
+                  href="/login"
+                  className="bg-[#E50914]  text-white px-4 py-1.5 rounded text-base "
+                >
+                  Sign In
+                </Link>
+              )}
+              {user && (
+                <div>
+                  <div
+                    onClick={toggleAccountMenu}
+                    className="h-10 rounded w-10 cursor-pointer"
+                  >
+                    <img
+                      className="h-10 rounded w-10 cursor-pointer"
+                      src="/images/default-blue.png"
+                      alt={user?.name}
+                    />
+                  </div>
+
+                  <AccountMenu visible={showAccountMenu} />
+                </div>
+              )}
             </div>
           </div>
 
@@ -65,6 +91,6 @@ function Hero() {
       </div>
     </div>
   );
-}
+};
 
 export default Hero;
