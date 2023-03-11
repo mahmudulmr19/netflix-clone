@@ -1,11 +1,30 @@
 import Router from "next/router";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import NavbarItem from "./NavbarItem";
 import { BsSearch, BsBell } from "react-icons/bs";
 import AccountMenu from "./AccountMenu";
 
 const Navbar = () => {
   const [showAccountMenu, setShowAccountMenu] = useState(false);
+  const [showBackground, setShowBackground] = useState(false);
+  const TOP_OFFSET = 66;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      console.log(window.scrollY);
+      if (window.scrollY >= TOP_OFFSET) {
+        setShowBackground(true);
+      } else {
+        setShowBackground(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const toggleAccountMenu = useCallback(() => {
     setShowAccountMenu((show) => !show);
@@ -13,17 +32,15 @@ const Navbar = () => {
   return (
     <nav className="w-full fixed z-40">
       <div
-        className="
-     
+        className={`
         px-7 sm:px-9 md:px-11 py-6
       flex
       flex-row
       items-center
       transition
       duration-500
-      bg-black
-      bg-opacity-90
-      "
+      ${showBackground ? "bg-black bg-opacity-80" : ""}
+      `}
       >
         <img
           onClick={() => Router.push("/")}
