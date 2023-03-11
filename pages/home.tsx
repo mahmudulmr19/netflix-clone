@@ -1,6 +1,7 @@
+import Billboard from "@/components/Billboard";
+import Navbar from "@/components/Navbar";
 import { NextPageContext } from "next";
-import { getSession, signOut } from "next-auth/react";
-import useCurrentUser from "@/hooks/useCurrentUser";
+import { getSession } from "next-auth/react";
 import Head from "next/head";
 import React from "react";
 
@@ -22,20 +23,13 @@ export async function getServerSideProps(context: NextPageContext) {
 }
 
 export default function Home() {
-  const { data: user } = useCurrentUser();
-
   return (
     <div>
       <Head>
         <title>Home - Netflix</title>
       </Head>
-      <p>Login as {user?.name}</p>
-      <button
-        className="h-10 w-full text-black bg-white"
-        onClick={() => signOut()}
-      >
-        Logout
-      </button>
+      <Navbar />
+      <Billboard />
     </div>
   );
 }
