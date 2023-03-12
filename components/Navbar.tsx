@@ -1,14 +1,13 @@
-import Router from "next/router";
 import React, { useCallback, useState, useEffect } from "react";
 import NavbarItem from "./NavbarItem";
 import { BsSearch, BsBell } from "react-icons/bs";
 import AccountMenu from "./AccountMenu";
-
+import { useRouter } from "next/router";
 const Navbar = () => {
   const [showAccountMenu, setShowAccountMenu] = useState(false);
   const [showBackground, setShowBackground] = useState(false);
   const TOP_OFFSET = 66;
-
+  const router = useRouter();
   useEffect(() => {
     const handleScroll = () => {
       console.log(window.scrollY);
@@ -43,15 +42,18 @@ const Navbar = () => {
       `}
       >
         <img
-          onClick={() => Router.push("/")}
+          onClick={() => router.push("/")}
           className="w-24   cursor-pointer"
           src="/images/logo.png"
           alt="netflix logo"
         />
         <div className=" flex-row ml-8 gap-7 hidden lg:flex">
-          <NavbarItem label="Home" />
-          <NavbarItem label="Series" />
-          <NavbarItem label="Films" />
+          <div onClick={() => router.push("/home")}>
+            <NavbarItem label="Home" />
+          </div>
+          <div onClick={() => router.push("/series")}>
+            <NavbarItem label="Series" />
+          </div>
           <NavbarItem label="New & Popular" />
           <NavbarItem label="My List" />
           <NavbarItem label="Brows by language" />
