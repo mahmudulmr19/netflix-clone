@@ -49,7 +49,7 @@ function Login() {
       if (result?.error) {
         toast.error(result.error);
       } else {
-        Router.push("/home");
+        Router.push("/profiles");
       }
     } catch (error) {
       console.log(error);
